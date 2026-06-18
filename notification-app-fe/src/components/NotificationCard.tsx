@@ -1,20 +1,26 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Notification } from "../types/notification";
 
-const filters = ["All", "Placement", "Result", "Event"];
+interface Props {
+  notification: Notification;
+}
 
-export function NotificationFilter({ value, onChange }) {
+function NotificationCard({ notification }: Props) {
   return (
-    <ToggleButtonGroup
-      value={value}
-      exclusive
-      size="small"
-      sx={{ flexWrap: "wrap", gap: 0.5 }}
+    <div
+      style={{
+        border: "1px solid gray",
+        padding: "15px",
+        marginBottom: "15px",
+        borderRadius: "10px",
+      }}
     >
-      {filters.map((type) => (
-        <ToggleButton value={type} sx={{ textTransform: "none", px: 2 }}>
-          {type}
-        </ToggleButton>
-      ))}
-    </ToggleButtonGroup>
+      <h3>{notification.title}</h3>
+
+      <p>{notification.message}</p>
+
+      <small>{notification.createdAt}</small>
+    </div>
   );
 }
+
+export default NotificationCard;
